@@ -241,47 +241,54 @@
   % Custom title page here
   \centering
   \topskip=0pt
-        \vspace*{1in}
+        % \vspace*{0.8in}
+        \phantom{?}\vspace{4\h@rdreturn}\par
         \begin{doublespace}
         \titlecap{\@title}\par
         \end{doublespace}
-    \vspace{3\h@rdreturn}\par
-      by\par\vspace{3\h@rdreturn}\par
-      \@author\par\vspace{4\h@rdreturn}\par
-      {A dissertation submitted in partial fulfillment\\
-          of the requirements for the degree of\\
-    \mydegree\\
-    Department of \mydepartment\\
-    College of \mycollege\\
-    \ifdefined\myuniversity
-      \myuniversity
-    \else
-       University of South Florida
-    \fi
-  }\par\vspace{3\h@rdreturn}
-  {
-    \ifdefined\mymajorprofessor Major Professor: \mymajorprofessor \par \fi
-    \ifdefined\mycomajorprofessorA Co-Major Professor:  \mycomajorprofessorA\par \fi
-    \ifdefined\mycomajorprofessorB Co-Major Professor: \mycomajorprofessorB\par\fi
-    \ifdefined\mycommitteememberA\mycommitteememberA\par\fi
-    \ifdefined\mycommitteememberB\mycommitteememberB\par\fi
-    \ifdefined\mycommitteememberC\mycommitteememberC\par\fi
-    \ifdefined\mycommitteememberD\mycommitteememberD\par\fi
-    \ifdefined\mycommitteememberE\mycommitteememberE\par\fi
-  }\par\vspace{2\h@rdreturn}
-  {Date of Approval:\par
-       \myapprovaldate\par
-  }\vspace{3\h@rdreturn}
-  {Keywords: \mykeywords}\par\vspace{\h@rdreturn}
-  {Copyright $\copyright$ \mycopyrightdate, \@author}
+        \vspace{3\h@rdreturn}\par
+        by
+        \par\vspace{3\h@rdreturn}\par
+        \@author\par
+        \vspace{4\h@rdreturn}\par
+        {A dissertation submitted in partial fulfillment\\
+         of the requirements for the degree of\\
+        \mydegree\\
+        Department of \mydepartment\\
+        College of \mycollege\\
+        \ifdefined\myuniversity
+          \myuniversity
+        \else
+           University of South Florida
+        \fi
+        }
+        \par\vspace{3\h@rdreturn}
+        {
+          \ifdefined\mymajorprofessor Major Professor: \mymajorprofessor \par \fi
+          \ifdefined\mycomajorprofessorA Co-Major Professor:  \mycomajorprofessorA\par \fi
+          \ifdefined\mycomajorprofessorB Co-Major Professor: \mycomajorprofessorB\par\fi
+          \ifdefined\mycommitteememberA\mycommitteememberA\par\fi
+          \ifdefined\mycommitteememberB\mycommitteememberB\par\fi
+          \ifdefined\mycommitteememberC\mycommitteememberC\par\fi
+          \ifdefined\mycommitteememberD\mycommitteememberD\par\fi
+          \ifdefined\mycommitteememberE\mycommitteememberE\par\fi
+        }
+        \par\vspace{2\h@rdreturn}
+        {Date of Approval:\par
+             \myapprovaldate\par
+        }
+        \vspace{3\h@rdreturn}
+        {Keywords: \mykeywords}
+        \par\vspace{\h@rdreturn}
+        {Copyright $\copyright$ \mycopyrightdate, \@author}
 
-  \end{titlepage}%
-  \setcounter{footnote}{0}%
-  \global\let\thanks\relax
-  \global\let\maketitle\relax
-  \global\let\@thanks\@empty
-  \global\let\and\relax
-  }
+        \end{titlepage}%
+        \setcounter{footnote}{0}%
+        \global\let\thanks\relax
+        \global\let\maketitle\relax
+        \global\let\@thanks\@empty
+        \global\let\and\relax
+        }
 \fi
 
 %%%% Sectioning commands
@@ -330,8 +337,8 @@
                       \addcontentsline{toc}{chapter}{\titlecap{#1}}%
                     \fi
                     \chaptermark{#1}%
-                    \addtocontents{lof}{\protect\addvspace{10\p@}}%
-                    \addtocontents{lot}{\protect\addvspace{10\p@}}%
+                    \addtocontents{lof}{\protect\addvspace{0\p@}}%
+                    \addtocontents{lot}{\protect\addvspace{0\p@}}%
                     \@makechapterhead{#2}%
                     \@afterheading
                     }
@@ -614,6 +621,10 @@
 %%%% The table of contents and friends
 \newcommand\@pnumwidth{1.55em}
 \newcommand\@tocrmarg{2.55em}
+
+\def\@pnumwidth{0.5in}
+\def\@tocrmarg{1.0in}
+
 \newcommand\@dotsep{4.5}
 \setcounter{tocdepth}{2}
 \newcommand\tableofcontents{%
@@ -663,6 +674,7 @@
               {\listfigurename}%
     \@starttoc{lof}%
     }
+
 \newcommand*\l@figure{\@dottedtocline{1}{1.5em}{2.3em}}
 \newcommand\listoftables{%
     \clearpage
@@ -681,11 +693,17 @@
     \tableofcontents
     \end{singlespace}
 
+
+    % Adjust right margin (between dots and page numbers columns)
+    \def\@pnumwidth{0.5in}
+    \def\@tocrmarg{1.0in}
+
     %% Insert a table of tables -- comes before figures in the format.
     % The tocloft package does not include a clear page, so we override that here.
     \clearpage
     \addcontentsline{toc}{chapter}{List of Tables}% Print LOT in TOC
     \listoftables
+
 
     %% Insert a table of figures
     \clearpage
@@ -746,9 +764,8 @@
 % Leaving LOT and LOF to tocloft package
 % All formatting happens here
 \usepackage{tocloft}
-\renewcommand{\cfttoctitlefont}{\normalfont}
-% \renewcommand{\contentsname}{\hfill\chapfont{Table of Contents}\hfill}
-\renewcommand{\contentsname}{\begin{center}\chapfont{Table of Contents}\end{center}}  
+\renewcommand{\cfttoctitlefont}{\hfill\normalfont}
+\renewcommand{\contentsname}{\chapfont{Table of Contents}}
 \renewcommand{\cftaftertoctitle}{\hfill}
 \renewcommand{\cftlottitlefont}{\hfill\normalfont}
 \renewcommand{\listtablename}{\chapfont{List of Tables}}
@@ -847,10 +864,14 @@
 \usepackage[all]{nowidow}
 
 % Adjusting figure and table captions and titles
-\captionsetup[figure]{name=Figure, labelsep=period, labelfont = {bf, singlespacing}, labelformat=default, position=bottom}
+\captionsetup[figure]{name=Figure, labelsep=colon, labelfont = {bf, singlespacing}, labelformat=default, position=bottom}
 
 % The position=top option only adds vertical space to fit the caption. For the correct placement, include the \caption command before the table starts, right after \begin{table}.
-\captionsetup[table]{name=Table, labelsep=period, labelfont = {bf, singlespacing}, labelformat=default, position=top}
+\captionsetup[table]{name=Table, labelsep=colon, labelfont = {bf, singlespacing}, labelformat=default, position=top}
+
+
+% The position=top option only adds vertical space to fit the caption. For the correct placement, include the \caption command before the table starts, right after \begin{table}.
+% \captionsetup[lstlisting]{name=Figure, labelsep=colon, labelfont = {bf, singlespacing}, labelformat=default, position=top}
 
 % Number subsubsections
 
@@ -865,5 +886,4 @@
 
 %%
 %% End of file `USFDissertation.cls'.
-
 
